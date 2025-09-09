@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Sébastien Bouchard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f8f8f8;
+            overflow-x: hidden;
+            cursor: crosshair;
+            height: 100vh;
+        }
+
+        .viewport-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Header with name */
+        .header {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+        }
+
+        .name {
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            color: #2c2c2c;
+            margin-bottom: 1rem;
+        }
+
+        .tagline {
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            color: #666;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 2rem;
+        }
+
+        /* Floating elements */
+        .floating-element {
+            position: absolute;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-radius: 2px;
+        }
+
+        .floating-element:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            z-index: 100;
+        }
+
+        /* Menu button */
+        .menu-btn {
+            top: 15%;
+            left: 45%;
+            width: 120px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #2c2c2c;
+            color: white;
+        }
+
+        .menu-btn .hamburger {
+            width: 25px;
+            height: 3px;
+            background: white;
+            position: relative;
+            margin-right: 10px;
+        }
+
+        .menu-btn .hamburger::before,
+        .menu-btn .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 3px;
+            background: white;
+            left: 0;
+        }
+
+        .menu-btn .hamburger::before {
+            top: -8px;
+        }
+
+        .menu-btn .hamburger::after {
+            top: 8px;
+        }
+
+        /* Projects section */
+        .projects-btn {
+            top: 20%;
+            right: 8%;
+            width: 160px;
+            height: 70px;
+            background: #4a90e2;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Image blocks */
+        .image-block {
+            background: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .image-block-1 {
+            top: 8%;
+            left: 8%;
+            width: 150px;
+            height: 120px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .image-block-2 {
+            top: 75%;
+            left: 12%;
+            width: 130px;
+            height: 180px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .image-block-3 {
+            top: 25%;
+            right: 15%;
+            width: 140px;
+            height: 100px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .image-block-4 {
+            bottom: 15%;
+            right: 25%;
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .image-block-5 {
+            bottom: 8%;
+            left: 35%;
+            width: 110px;
+            height: 140px;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .image-block-6 {
+            top: 6%;
+            right: 30%;
+            width: 100px;
+            height: 80px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .image-block-7 {
+            bottom: 8%;
+            right: 8%;
+            width: 160px;
+            height: 90px;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+        }
+
+        /* Text blocks */
+        .text-block {
+            padding: 20px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .contact-block {
+            top: 25%;
+            left: 20%;
+            width: 150px;
+            height: 60px;
+            background: #2c2c2c;
+            color: white;
+        }
+
+        /* Navigation indicator */
+        .nav-indicator {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+
+        .nav-indicator::before,
+        .nav-indicator::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 2px;
+            background: #666;
+        }
+
+        .nav-indicator::before {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .nav-indicator::after {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .floating-element {
+                transform: scale(0.8);
+            }
+            
+            .name {
+                font-size: 4rem;
+            }
+            
+            .tagline {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Smooth animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-10px) rotate(1deg); }
+            66% { transform: translateY(5px) rotate(-1deg); }
+        }
+
+        .floating-element:nth-child(odd) {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(even) {
+            animation: float 8s ease-in-out infinite reverse;
+        }
+    </style>
+</head>
+<body>
+    <div class="viewport-container">
+        <!-- Main Header -->
+        <div class="header">
+            <h1 class="name">SÉBASTIEN BOUCHARD</h1>
+            <p class="tagline">Portfolio Marketing</p>
+        </div>
+
+        <!-- Menu Button -->
+        <div class="floating-element menu-btn" onclick="showMenu()">
+            <div class="hamburger"></div>
+            <span>MENU</span>
+        </div>
+
+        <!-- Projects Button -->
+        <div class="floating-element projects-btn" onclick="showProjects()">
+            PROJETS
+        </div>
+
+        <!-- Image Blocks (representing portfolio pieces) -->
+        <div class="floating-element image-block image-block-1" onclick="openProject(1)"></div>
+        <div class="floating-element image-block image-block-2" onclick="openProject(2)"></div>
+        <div class="floating-element image-block image-block-3" onclick="openProject(3)"></div>
+        <div class="floating-element image-block image-block-4" onclick="openProject(4)"></div>
+        <div class="floating-element image-block image-block-5" onclick="openProject(5)"></div>
+        <div class="floating-element image-block image-block-6" onclick="openProject(6)"></div>
+        <div class="floating-element image-block image-block-7" onclick="openProject(7)"></div>
+
+        <!-- Contact Block -->
+        <div class="floating-element text-block contact-block" onclick="showContact()">
+            CONTACT
+        </div>
+
+        <!-- Navigation Indicator -->
+        <div class="nav-indicator" onclick="scrollDown()"></div>
+    </div>
+
+    <script>
+        // Add interactive functionality
+        function showMenu() {
+            alert('Fonctionnalité menu - vous pouvez développer ceci pour afficher les options de navigation');
+        }
+
+        function showProjects() {
+            alert('Section projets - présentez votre travail ici');
+        }
+
+        function openProject(id) {
+            alert(`Ouverture du projet ${id} - vous pouvez lier vers des pages de projet détaillées`);
+        }
+
+        function showContact() {
+            alert('Informations de contact - ajoutez votre email, liens sociaux, etc.');
+        }
+
+        function scrollDown() {
+            alert('Ajoutez des sections supplémentaires ou une fonctionnalité de défilement fluide');
+        }
+
+        // Add some interactivity on mouse move
+        document.addEventListener('mousemove', (e) => {
+            const elements = document.querySelectorAll('.floating-element');
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            elements.forEach((element, index) => {
+                const speed = (index % 3 + 1) * 0.5;
+                const x = (mouseX - 0.5) * speed;
+                const y = (mouseY - 0.5) * speed;
+                
+                element.style.transform += ` translate(${x}px, ${y}px)`;
+            });
+        });
+
+        // Reset positions periodically
+        setInterval(() => {
+            const elements = document.querySelectorAll('.floating-element');
+            elements.forEach(element => {
+                element.style.transform = element.style.transform.replace(/translate\([^)]*\)/g, '');
+            });
+        }, 3000);
+    </script>
+</body>
+</html>
