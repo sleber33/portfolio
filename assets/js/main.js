@@ -32,15 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let isDragging = false;
         let startX = 0;
         let startY = 0;
-        const initialX = parseFloat(dragSurface.getAttribute('data-start-x')) || 0;
-        const initialY = parseFloat(dragSurface.getAttribute('data-start-y')) || 0;
-        const initialZoom = parseFloat(dragSurface.getAttribute('data-zoom')) || 1;
-        let currentX = initialX;
-        let currentY = initialY;
 
-        dragSurface.style.setProperty('--offset-x', `${currentX}px`);
-        dragSurface.style.setProperty('--offset-y', `${currentY}px`);
-        dragSurface.style.setProperty('--zoom', initialZoom);
 
         const updatePosition = () => {
             dragSurface.style.setProperty('--offset-x', `${currentX}px`);

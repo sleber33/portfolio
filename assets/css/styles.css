@@ -198,48 +198,6 @@ body.menu-open {
     left: 50%;
     width: 1800px;
     height: 1200px;
-    --offset-x: 0px;
-    --offset-y: 0px;
-    --zoom: 1;
-    transform-origin: 50% 50%;
-    transform: translate(calc(-50% + var(--offset-x, 0px)), calc(-50% + var(--offset-y, 0px))) scale(var(--zoom, 1));
-    transition: transform 0.1s ease-out;
-}
-
-.drag-hints {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    z-index: 1;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.3em;
-    color: rgba(16, 16, 16, 0.45);
-}
-
-.drag-hints .hint {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-}
-
-.drag-hints .hint::before {
-    font-size: 1.25rem;
-}
-
-.hint-up { grid-area: 1 / 1 / 2 / 3; align-items: flex-start; padding-top: 1.5rem; }
-.hint-down { grid-area: 2 / 1 / 3 / 3; align-items: flex-end; padding-bottom: 1.5rem; }
-.hint-left { grid-area: 1 / 1 / 3 / 2; justify-content: flex-start; padding-left: 1.5rem; }
-.hint-right { grid-area: 1 / 2 / 3 / 3; justify-content: flex-end; padding-right: 1.5rem; }
-
-.hint-up::before { content: "↑"; }
-.hint-down::before { content: "↓"; }
-.hint-left::before { content: "←"; }
-.hint-right::before { content: "→"; }
 
 .home-hero {
     position: absolute;
@@ -273,71 +231,21 @@ body.menu-open {
 }
 
 
-.project-card {
-    position: absolute;
-    width: 300px;
-    min-height: 360px;
-    border-radius: 26px;
     background: linear-gradient(160deg, rgba(255,255,255,0.94), rgba(226,234,255,0.85));
     box-shadow: var(--panel-shadow);
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+
     text-decoration: none;
     color: inherit;
 }
 
-.project-visual {
-    margin: 0;
-    flex-shrink: 0;
-    height: 170px;
-    background: rgba(255,255,255,0.4);
-}
 
-.project-visual img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.project-info {
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-    padding: 1.6rem 1.6rem 1.4rem;
-    min-height: 160px;
-}
-
-.project-card h2 {
-    font-size: 1.5rem;
-    letter-spacing: -0.01em;
-}
-
-.project-card p {
-    font-size: 0.95rem;
-    color: rgba(16, 16, 16, 0.74);
-    line-height: 1.45;
 }
 
 .project-card::after {
     content: "→";
-    margin: 0 1.6rem 1.6rem auto;
-    font-size: 1.6rem;
-    color: var(--accent-color);
-    transition: transform var(--transition-speed) ease;
-}
 
-.project-card:hover::after,
-.project-card:focus-visible::after {
-    transform: translateX(6px);
-}
-
-.project-card[data-project="asics"] { top: 14%; left: 18%; }
-.project-card[data-project="agence-propulsion"] { top: 24%; right: 16%; }
-.project-card[data-project="cowansville"] { bottom: 20%; left: 22%; }
-.project-card[data-project="brasser"] { bottom: 12%; right: 20%; }
-.project-card[data-project="familiprix"] { top: 68%; left: 58%; }
 
 main.project-content {
     padding: 7rem 1.5rem 4rem;
@@ -499,8 +407,7 @@ main.project-content {
     }
 
     .project-card {
-        width: 240px;
-        min-height: 320px;
+
     }
 }
 
@@ -529,8 +436,6 @@ main.project-content {
     }
 
     .project-card {
-        width: 210px;
-        min-height: 300px;
     }
 
     main.project-content {
@@ -543,17 +448,7 @@ main.project-content {
 }
 
 @media (max-width: 600px) {
-    .drag-hints {
-        font-size: 0.6rem;
-        letter-spacing: 0.18em;
-    }
 
-    .project-visual {
-        height: 140px;
-    }
-
-    .project-info {
-        padding: 1.4rem 1.4rem 1.2rem;
     }
 
     .project-header {
