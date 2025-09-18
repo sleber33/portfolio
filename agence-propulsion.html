@@ -13,12 +13,13 @@
     <style>
       :root {
         --bg-color: #0c0c0f;
-        --text-color: #f8f8f8;
+        --text-color: #f5f5f7;
         --accent-color: #ff7260;
-        --muted-color: #7a7a86;
-        --card-bg: rgba(32, 32, 40, 0.9);
-        --menu-bg: rgba(12, 12, 15, 0.95);
+        --muted-color: #8a8a98;
+        --card-bg: rgba(24, 24, 32, 0.9);
+        --outline-color: rgba(255, 255, 255, 0.16);
         --font-sans: "Poppins", "Helvetica Neue", Arial, sans-serif;
+        --shadow-lg: 0 22px 54px rgba(0, 0, 0, 0.42);
       }
 
       * {
@@ -29,7 +30,7 @@
       body {
         margin: 0;
         padding: 0;
-        background: var(--bg-color);
+        background: radial-gradient(circle at 100% 0%, #1d1d2a, #09090d 70%);
         color: var(--text-color);
         font-family: var(--font-sans);
       }
@@ -46,19 +47,19 @@
       }
 
       .interactive {
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        transition: transform 0.24s ease, box-shadow 0.24s ease;
         cursor: pointer;
       }
 
       .interactive:hover {
         transform: scale(1.05);
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+        box-shadow: var(--shadow-lg);
       }
 
       .menu-overlay {
         position: fixed;
         inset: 0;
-        background: var(--menu-bg);
+        background: rgba(10, 10, 14, 0.95);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -68,6 +69,8 @@
         pointer-events: none;
         transition: opacity 0.3s ease;
         z-index: 50;
+        padding: 32px;
+        text-align: center;
       }
 
       .menu-overlay.open {
@@ -76,80 +79,101 @@
       }
 
       .menu-overlay h3 {
-        margin: 0 0 20px;
+        margin: 0 0 16px;
         letter-spacing: 0.12em;
-        font-weight: 600;
         text-transform: uppercase;
+        font-size: 14px;
+        color: var(--muted-color);
       }
 
-      .menu-overlay a {
-        font-size: 24px;
-        font-weight: 500;
+      .menu-overlay a,
+      .menu-overlay button {
+        font-size: 20px;
+        font-weight: 600;
+        padding: 12px 24px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(28, 28, 36, 0.78);
         color: var(--text-color);
       }
 
-      body.project {
-        min-height: 100vh;
-        background: linear-gradient(150deg, rgba(12, 12, 15, 1), rgba(30, 30, 40, 1));
-      }
-
       .page-shell {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 48px 24px 120px;
-        display: flex;
-        flex-direction: column;
-        gap: 48px;
+        min-height: 100vh;
+        padding: 32px clamp(24px, 5vw, 72px) 80px;
       }
 
-      .page-header {
+      .top-bar {
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 24px;
+        margin-bottom: 48px;
       }
 
-      .branding {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-      }
-
-      .branding strong {
-        font-size: 30px;
-        letter-spacing: 0.08em;
-      }
-
-      .menu-button {
-        padding: 12px 20px;
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        background: rgba(12, 12, 15, 0.6);
-        font-weight: 600;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-      }
-
-      .hero-card {
-        padding: 40px;
-        background: var(--card-bg);
-        border-radius: 32px;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
-
-      .hero-card h1 {
-        margin: 0;
-        font-size: 42px;
-      }
-
-      .hero-card p {
-        margin: 0;
+      .brand-link {
         font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        padding: 10px 18px;
+        border-radius: 999px;
+        border: 1px solid var(--outline-color);
+        background: rgba(24, 24, 32, 0.65);
+      }
+
+      .top-bar-actions {
+        display: flex;
+        gap: 12px;
+      }
+
+      .pill-button {
+        padding: 10px 22px;
+        border-radius: 999px;
+        border: 1px solid var(--outline-color);
+        background: rgba(20, 20, 28, 0.72);
+        color: var(--text-color);
+        font-weight: 600;
+        letter-spacing: 0.05em;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 48px;
+        align-items: center;
+        padding: 48px;
+        border-radius: 40px;
+        background: linear-gradient(120deg, rgba(255, 114, 96, 0.16), rgba(10, 10, 14, 0.9));
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        margin-bottom: 64px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 18px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(24, 24, 32, 0.7);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-size: 12px;
         color: var(--muted-color);
+        margin-bottom: 16px;
+      }
+
+      .hero h1 {
+        margin: 0 0 16px;
+        font-size: clamp(36px, 4vw, 52px);
+        line-height: 1.1;
+      }
+
+      .hero p {
+        margin: 0 0 24px;
+        font-size: 18px;
         line-height: 1.6;
+        color: rgba(245, 245, 247, 0.88);
       }
 
       .hero-actions {
@@ -158,132 +182,223 @@
         gap: 16px;
       }
 
-      .hero-actions a {
-        padding: 12px 22px;
-        border-radius: 999px;
-        background: var(--accent-color);
-        color: #0c0c0f;
-        font-weight: 600;
+      .hero-media {
+        border-radius: 32px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(12, 12, 16, 0.6);
       }
 
-      .section {
+      .hero-media img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+      }
+
+      .content-grid {
         display: grid;
-        gap: 18px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 40px;
+        margin-bottom: 64px;
       }
 
-      .section h2 {
-        margin: 0;
-        font-size: 28px;
+      .card {
+        border-radius: 32px;
+        padding: 32px;
+        background: rgba(20, 20, 28, 0.82);
+        border: 1px solid rgba(255, 255, 255, 0.12);
       }
 
-      .section p,
-      .section li {
+      .card h2 {
+        margin: 0 0 18px;
+        font-size: 24px;
+      }
+
+      .card p {
+        margin: 0 0 16px;
         color: var(--muted-color);
         line-height: 1.6;
       }
 
-      .section ul {
+      .card ul {
         margin: 0;
         padding-left: 20px;
-        display: grid;
-        gap: 10px;
+        line-height: 1.6;
       }
 
-      .media-links {
-        display: grid;
-        gap: 12px;
+      .card li + li {
+        margin-top: 8px;
       }
 
-      .media-links a {
-        color: var(--accent-color);
+      .media-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        margin-top: 24px;
+      }
+
+      .media-grid a {
+        display: block;
+        padding: 16px;
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(12, 12, 18, 0.8);
+        color: var(--text-color);
+        text-align: center;
         font-weight: 500;
       }
 
-      .footer-note {
-        margin-top: auto;
-        text-align: center;
+      footer {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        margin-top: 80px;
+        padding-top: 32px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 16px;
         color: var(--muted-color);
-        font-size: 14px;
       }
 
-      @media (max-width: 768px) {
-        .page-header {
+      @media (max-width: 1024px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+
+        .content-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .page-shell {
+          padding: 24px 18px 64px;
+        }
+
+        .top-bar {
           flex-direction: column;
           align-items: flex-start;
         }
 
-        .hero-card {
-          padding: 28px;
+        .top-bar-actions {
+          width: 100%;
+          flex-wrap: wrap;
         }
 
-        .hero-card h1 {
-          font-size: 32px;
+        .hero {
+          padding: 32px;
         }
       }
     </style>
   </head>
-  <body class="project">
-    <div class="menu-overlay">
-      <h3>Projets</h3>
+  <body>
+    <div class="menu-overlay" aria-hidden="true">
+      <h3>Accès rapide</h3>
       <a class="interactive" href="index.html">Accueil</a>
       <a class="interactive" href="asics.html">Asics – Activation de marque</a>
       <a class="interactive" href="agence-propulsion.html">Agence Propulsion</a>
       <a class="interactive" href="cowansville-economique.html">Cowansville Économique</a>
       <a class="interactive" href="brasser-pour-donner.html">Brasser pour donner</a>
       <a class="interactive" href="analyse-familiprix.html">Analyse Familiprix</a>
+      <button class="interactive" data-menu-toggle>Fermer</button>
     </div>
 
-    <main class="page-shell">
-      <header class="page-header">
-        <div class="branding">
-          <strong>Sébastien Bouchard</strong>
+    <div class="page-shell">
+      <header class="top-bar">
+        <a class="brand-link interactive" href="index.html">Sébastien Bouchard</a>
+        <div class="top-bar-actions">
+          <a class="pill-button interactive" href="index.html">← Retour à l'accueil</a>
+          <a
+            class="pill-button interactive"
+            href="https://example.com/cv-sebastien-bouchard.pdf"
+            target="_blank"
+            rel="noopener"
+            >CV</a
+          >
+          <button class="pill-button interactive" data-menu-toggle>Menu</button>
         </div>
-        <button class="menu-button interactive" data-menu-toggle aria-haspopup="true" aria-expanded="false">
-          Menu
-        </button>
       </header>
 
-      <section class="hero-card">
-        <h1>Agence des compétitions académiques</h1>
-        <p>
-          Développer une offre de services complète pour soutenir des équipes
-          universitaires dans leur préparation aux compétitions académiques.
-        </p>
-        <div class="hero-actions">
-          <a class="interactive" href="https://example.com/agence-propulsion-cas.pdf" target="_blank" rel="noopener">
-            Cas complets
-          </a>
-        </div>
-      </section>
+      <main>
+        <section class="hero">
+          <div>
+            <span class="badge">Direction de l'agence</span>
+            <h1>Agence Propulsion – Alignement et performance</h1>
+            <p>
+              Mandat de transformation pour une agence étudiante reconnue sur la scène des
+              compétitions académiques. L'objectif : structurer l'offre, consolider la marque employeur
+              et multiplier les opportunités pour ses membres.
+            </p>
+            <div class="hero-actions">
+              <a class="pill-button interactive" href="https://example.com/agence-propulsion-cas.pdf" target="_blank" rel="noopener"
+                >Cas complets</a
+              >
+              <a class="pill-button interactive" href="https://www.linkedin.com/in/s%C3%A9bastien-bouchard-1329b321a/" target="_blank" rel="noopener"
+                >LinkedIn</a
+              >
+            </div>
+          </div>
+          <div class="hero-media">
+            <img
+              src="https://via.placeholder.com/900x620/181824/ffffff?text=Agence+Propulsion"
+              alt="Atelier stratégique de l'Agence Propulsion"
+            />
+          </div>
+        </section>
 
-      <section class="section">
-        <h2>Défi</h2>
-        <p>
-          Les équipes avaient besoin d'un accompagnement structuré combinant
-          stratégie, coaching et outils marketing afin de maximiser leur impact
-          lors des compétitions nationales.
-        </p>
-      </section>
+        <section class="content-grid">
+          <article class="card">
+            <h2>Diagnostic</h2>
+            <p>
+              Analyse complète des processus de recrutement, de la structure de direction et des
+              outils de suivi des mandats. Un audit de marque employeur a permis d'identifier les
+              leviers d'attraction et de rétention.
+            </p>
+            <ul>
+              <li>Étude qualitative auprès des cohortes et alumni.</li>
+              <li>Cartographie des rôles et gouvernance.</li>
+              <li>Analyse concurrentielle des agences étudiantes.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h2>Feuille de route</h2>
+            <ul>
+              <li>Refonte de l'identité et du positionnement.</li>
+              <li>Création d'un programme d'onboarding mentoré.</li>
+              <li>Lancement d'un calendrier d'expérimentations clients.</li>
+              <li>Création de gabarits et de protocoles de pitch.</li>
+            </ul>
+            <div class="media-grid">
+              <a class="interactive" href="https://example.com/proposition-propulsion" target="_blank" rel="noopener"
+                >Proposition de valeur</a
+              >
+              <a class="interactive" href="https://example.com/plan-competitions" target="_blank" rel="noopener"
+                >Plan compétitions</a
+              >
+            </div>
+          </article>
+        </section>
 
-      <section class="section">
-        <h2>Approche</h2>
-        <ul>
-          <li>Analyse des besoins spécifiques de chaque délégation.</li>
-          <li>Création d'offres modulaires couvrant formation, image de marque et visibilité.</li>
-          <li>Mise en place d'un suivi de performance personnalisé.</li>
-        </ul>
-      </section>
+        <section class="card">
+          <h2>Résultats</h2>
+          <p>
+            En moins d'un an, l'agence a accru de 45 % le nombre de mandats actifs et doublé la
+            participation à ses activités de formation. Les équipes compétition ont atteint deux
+            podiums nationaux consécutifs, confirmant la pertinence de la nouvelle structure.
+          </p>
+          <p>
+            Un comité d'innovation a été mis sur pied pour assurer la continuité des projets. La
+            documentation livrée permet aux nouvelles cohortes de conserver un niveau de professionnalisme
+            constant tout en explorant de nouvelles pistes.
+          </p>
+        </section>
+      </main>
 
-      <section class="section">
-        <h2>Impact</h2>
-        <p>
-          L'agence a permis d'harmoniser la qualité des présentations, d'augmenter
-          la reconnaissance des équipes et de bâtir des processus réutilisables.
-        </p>
-      </section>
-
-      <p class="footer-note">© Sébastien Bouchard – Tous droits réservés.</p>
-    </main>
+      <footer>
+        <span>© Sébastien Bouchard — Marketing stratégique</span>
+        <span>Agence Propulsion — Leadership étudiant</span>
+      </footer>
+    </div>
 
     <script>
       document.addEventListener('DOMContentLoaded', () => {
@@ -300,9 +415,7 @@
 
         if (menuOverlay) {
           menuOverlay.querySelectorAll('a').forEach((link) => {
-            link.addEventListener('click', () => {
-              menuOverlay.classList.remove('open');
-            });
+            link.addEventListener('click', () => menuOverlay.classList.remove('open'));
           });
         }
       });
