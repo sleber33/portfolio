@@ -1,0 +1,19 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 400'>
+<defs>
+  <linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'>
+    <stop offset='0%' stop-color='#FF7C6E'/>
+    <stop offset='100%' stop-color='#FFC1B6'/>
+  </linearGradient>
+</defs>
+<rect width='600' height='400' fill='url(#grad)' rx='32'/>
+<g fill='white' font-family="'Poppins', 'Helvetica Neue', Arial, sans-serif" font-weight='600'>
+  <text x='48' y='210' font-size='48'>Agence Propulsion</text>
+  <text x='48' y='260' font-size='28' opacity='0.8'>Compétitions académiques</text>
+</g>
+<g stroke='white' stroke-width='3' stroke-linecap='round' opacity='0.65'>
+  <path d='M520 80 l40 0 0 40' fill='none'/>
+  <path d='M80 320 l-40 0 0 -40' fill='none'/>
+  <path d='M280 110 l40 -24' fill='none'/>
+  <path d='M300 330 l-60 28' fill='none'/>
+</g>
+</svg>
