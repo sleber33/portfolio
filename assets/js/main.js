@@ -32,8 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let isDragging = false;
         let startX = 0;
         let startY = 0;
-        let currentX = 0;
-        let currentY = 0;
+
 
         const updatePosition = () => {
             dragSurface.style.setProperty('--offset-x', `${currentX}px`);

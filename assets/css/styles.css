@@ -198,9 +198,6 @@ body.menu-open {
     left: 50%;
     width: 1800px;
     height: 1200px;
-    transform: translate(calc(-50% + var(--offset-x, 0px)), calc(-50% + var(--offset-y, 0px)));
-    transition: transform 0.1s ease-out;
-}
 
 .home-hero {
     position: absolute;
@@ -233,78 +230,22 @@ body.menu-open {
     inset: 0;
 }
 
-.project-card {
-    position: absolute;
-    width: 260px;
-    min-height: 280px;
-    padding: 1.8rem;
-    border-radius: 24px;
+
     background: linear-gradient(160deg, rgba(255,255,255,0.94), rgba(226,234,255,0.85));
     box-shadow: var(--panel-shadow);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    gap: 1.2rem;
+
     text-decoration: none;
     color: inherit;
 }
 
-.project-card h2 {
-    font-size: 1.6rem;
-    letter-spacing: -0.01em;
-}
 
-.project-card span {
-    font-size: 0.85rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: rgba(16, 16, 16, 0.55);
-}
-
-.project-card p {
-    font-size: 0.95rem;
-    color: rgba(16, 16, 16, 0.7);
 }
 
 .project-card::after {
     content: "→";
-    align-self: flex-end;
-    font-size: 1.8rem;
-    color: var(--accent-color);
-}
 
-.project-card[data-project="asics"] { top: 10%; left: 15%; }
-.project-card[data-project="agence-propulsion"] { top: 18%; right: 14%; }
-.project-card[data-project="cowansville"] { bottom: 18%; left: 20%; }
-.project-card[data-project="brasser"] { bottom: 8%; right: 18%; }
-.project-card[data-project="familiprix"] { top: 65%; left: 55%; }
-
-.contact-bubble {
-    position: absolute;
-    bottom: 12%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 320px;
-    padding: 2.2rem;
-    border-radius: 26px;
-    background: linear-gradient(150deg, rgba(255,255,255,0.95), rgba(217,87,99,0.12));
-    text-align: center;
-    box-shadow: var(--panel-shadow);
-}
-
-.contact-bubble h3 {
-    font-size: 1.4rem;
-    margin-bottom: 0.6rem;
-}
-
-.contact-bubble a {
-    display: inline-block;
-    margin-top: 0.6rem;
-    padding: 0.6rem 1.2rem;
-    border-radius: 999px;
-    background: rgba(217, 87, 99, 0.18);
-    font-weight: 600;
-}
 
 main.project-content {
     padding: 7rem 1.5rem 4rem;
@@ -466,8 +407,7 @@ main.project-content {
     }
 
     .project-card {
-        width: 220px;
-        min-height: 240px;
+
     }
 }
 
@@ -496,11 +436,6 @@ main.project-content {
     }
 
     .project-card {
-        width: 200px;
-    }
-
-    .contact-bubble {
-        width: min(90vw, 320px);
     }
 
     main.project-content {
@@ -513,12 +448,7 @@ main.project-content {
 }
 
 @media (max-width: 600px) {
-    .project-card {
-        padding: 1.4rem;
-    }
 
-    .project-card h2 {
-        font-size: 1.4rem;
     }
 
     .project-header {
